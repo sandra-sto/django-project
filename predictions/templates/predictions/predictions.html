@@ -1,0 +1,59 @@
+{% load static %}
+<head>
+    <title> Predictions </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{%static 'css/index.css'  %}" type="text/css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+{#    <script src = "js/index.js"> </script>#}
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Predictions</h1>
+            <p>On this page are represented some results for Workload prediction of cloud devices</p>
+        </div>
+
+
+
+        <div class = "row">
+            <div class = "col-md-6">
+                <label>Choose device type:</label>
+                <select id="device_types" name="device_types" size = {{ device_types|length }}>
+                    {%  for entry in device_types %}
+                        <option value = "{{ entry }}"> {{ entry }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="devices">Choose device:</label>
+                <select id="devices" name="devices">
+
+                </select>
+            </div>
+        </div>
+
+        <div class= "row">
+        <div class="col-md-12">
+
+            <label> Choose historical predictions representation:</label>
+
+            <ul>
+                {% for prediction in predictions  %}
+                    <li>{{ prediction}}</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+
+        </div>
+
+    </div>
+
+
+</body>
+

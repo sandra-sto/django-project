@@ -29,7 +29,6 @@ class PredictionModel(Model):
     # conf_parameters = columns.Map(columns.Text, columns.Text)
     __table_name__ = "model"
 
-
 class Data(Model):
     device_id = columns.Text(primary_key=True)
     parameter_name = columns.Text(primary_key=True, clustering_order="ASC")

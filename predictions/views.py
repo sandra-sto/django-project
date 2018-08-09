@@ -9,13 +9,15 @@ def get_predictions_for_device(request):
     predictions = Predictions.objects.all().filter(device = request.GET.get("device_id"))
 
     list_dicts = [dict(i) for i in predictions]
-    print("name")
-    print(request.resolver_match.app_name)
-    template = loader.get_template('predictions/index.html')
 
-    context = {'latest_question_list': latest_question_list}
-    return render(request, 'polls/index.html', context)
-    return JsonResponse(list_dicts, safe=False)
+    # template = loader.get_template('predictions/predictions.html')
+    devices_types = Devices.objects.values_list("device_type", flat=True)
+    devices_types_list = list(devices_types)
+
+    context = {'predictions': list_dicts}
+    context = {'device_types' : devices_types}
+    return render(request, 'predictions/predictions.html', context)
+    # return JsonResponse(list_dicts, safe=False)
     # return HttpResponse(json.dumps(listg), content_type = "application/json")
 
 
