@@ -1,10 +1,14 @@
-{% load static %}
+{% load staticfiles %}
 <head>
     <title> Predictions </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="{%static 'css/index.css'  %}" type="text/css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src = "{% static 'js/index.js' %}"></script>
+{#    <script src="localhost://home/nissatech/node_modules/chart.js/dist/Chart.js"> </script>#}
+    <script src = "{% static 'js/Chart.js' %}"></script>
+    <script src = "{% static 'js/Chart.bundle.js' %}"></script>
 
 {#    <script src = "js/index.js"> </script>#}
 </head>
@@ -17,39 +21,52 @@
             <p>On this page are represented some results for Workload prediction of cloud devices</p>
         </div>
 
-
-
         <div class = "row">
-            <div class = "col-md-6">
+            <div class = "col-md-5 form-group">
+
                 <label>Choose device type:</label>
-                <select id="device_types" name="device_types" size = {{ device_types|length }}>
+
+                <select id="device_types" name="device_types" class = "form-control">
                     {%  for entry in device_types %}
                         <option value = "{{ entry }}"> {{ entry }}</option>
                     {% endfor %}
                 </select>
+
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5 form-group">
                 <label for="devices">Choose device:</label>
-                <select id="devices" name="devices">
+                <select id="devices" name="devices" class = "form-control">
 
                 </select>
             </div>
         </div>
 
         <div class= "row">
-        <div class="col-md-12">
+            <div class="col-md-5 form-group">
+                <label for="devices">Choose parameters:</label>
+                <select id="parameters" name="parameters" class = "form-control" size="5">
+                    <option>apr</option>
+                </select>
+            </div>
+            <div class="col-md-5">
 
-            <label> Choose historical predictions representation:</label>
+                <label> Choose historical predictions representation:</label>
+            <br>
+                <button id="get_data" class=""btn> Get data </button>
+{#                <ul>#}
+{#                    {% for prediction in predictions  %}#}
+{#                        <li>{{ prediction}}</li>#}
+{#                    {% endfor %}#}
+{#                </ul>#}
 
-            <ul>
-                {% for prediction in predictions  %}
-                    <li>{{ prediction}}</li>
-                {% endfor %}
-            </ul>
+            </div>
 
         </div>
+        <div class = "row" style= "width:90%; height:500px">
+            <div class="col-md-12">
 
-
+                <canvas id="myChart"  style= "width:100%; height:100%"></canvas>
+            </div>
         </div>
 
     </div>
